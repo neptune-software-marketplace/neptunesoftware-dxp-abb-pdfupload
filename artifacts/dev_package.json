@@ -1,0 +1,47 @@
+{
+	"id": "4A5C923C-F912-ED11-BD6E-000D3AB1D9FF",
+	"createdAt": "2022-08-03T06:55:20.080Z",
+	"createdBy": "kristin.eliassen@neptune-software.com",
+	"git": {
+		"targetServers": [],
+		"remote": "https://github.com/neptune-software-marketplace/neptunesoftware-dxp-abb-pdfupload",
+		"testServers": []
+	},
+	"name": "neptunesoftware-dxp-abb-pdfupload",
+	"description": null,
+	"ver": "22.8.3.656",
+	"enableCICD": true,
+	"apps": [
+		{
+			"id": "FE93B8FE-DE8B-EB11-85AA-0003FF1E43FB",
+			"ver": "22.8.3.855",
+			"application": "pdfupload",
+			"title": "",
+			"description": ""
+		}
+	],
+	"api": [],
+	"odataMock": [],
+	"odataSource": [],
+	"dictionary": [],
+	"jsclass": [],
+	"jsscript_group": [],
+	"theme": [],
+	"pdf": [],
+	"rulesengine": [],
+	"reports": [],
+	"api_authentication": [],
+	"api_group": [],
+	"tile": [],
+	"category": [],
+	"launchpad": [],
+	"certificates": [],
+	"role": [],
+	"systems": [],
+	"doc": [],
+	"wf_notifications": [],
+	"wf_definition": [],
+	"department": [],
+	"script_scheduler": [],
+	"connector": []
+}

@@ -1,0 +1,215 @@
+{
+	"id": "fe93b8fe-de8b-eb11-85aa-0003ff1e43fb",
+	"createdAt": "2022-02-04T15:52:06.726Z",
+	"updatedAt": "2022-08-03T06:55:31.716Z",
+	"createdBy": "luuk.wosten@neptune-software.com",
+	"changedBy": "kristin.eliassen@neptune-software.com",
+	"objects": [
+		{
+			"fieldNo": "855b23bc-890b-48b7-a995-0d2e4359b320",
+			"fieldName": "checkboxSelected",
+			"fieldParent": 0,
+			"fieldType": "sap.m.CheckBox",
+			"script": "",
+			"request": [],
+			"response": [],
+			"attributes": [
+				{
+					"attribute": "select",
+					"grouping": "Events",
+					"value": "Anonymous Function",
+					"script": [
+						"==OBJECT STRING==",
+						"if (checkboxSelected.getSelected()){",
+						"    pdfUpload.setVisible(true);",
+						"    if (oPDFViewer.getSource()){",
+						"        oPDFViewer.setVisible(true);",
+						"    }",
+						"",
+						"}",
+						"else {",
+						"    oPDFViewer.setVisible(false);",
+						"    pdfUpload.setVisible(false);",
+						"}",
+						""
+					],
+					"translation": []
+				}
+			],
+			"data": []
+		},
+		{
+			"fieldNo": "dc357e97-5afd-46b2-cc43-91f3a9f9a389",
+			"fieldName": "pdfEncoding",
+			"fieldParent": 0,
+			"fieldType": "sap.m.Text",
+			"script": "",
+			"request": [],
+			"response": [],
+			"attributes": [
+				{
+					"attribute": "visible",
+					"grouping": "Properties",
+					"value": "false",
+					"script": "",
+					"translation": []
+				}
+			],
+			"data": []
+		},
+		{
+			"fieldNo": "ad2e7116-6c73-4a06-f6c7-0292ba9b7f27",
+			"fieldName": "pdfUpload",
+			"fieldParent": 0,
+			"fieldType": "sap.ui.unified.FileUploader",
+			"script": "",
+			"request": [],
+			"response": [],
+			"attributes": [
+				{
+					"attribute": "visible",
+					"grouping": "Properties",
+					"value": "false",
+					"script": "",
+					"translation": []
+				},
+				{
+					"attribute": "fileType",
+					"grouping": "Properties",
+					"value": "pdf",
+					"script": "",
+					"translation": []
+				},
+				{
+					"attribute": "buttonText",
+					"grouping": "Properties",
+					"value": "Attach Copy",
+					"script": "",
+					"translation": []
+				},
+				{
+					"attribute": "fileAllowed",
+					"grouping": "Events",
+					"value": "Anonymous Function",
+					"script": [
+						"==OBJECT STRING==",
+						"//This code triggers when we have successfully uploaded a file.",
+						"console.log(\"File Allowed\");",
+						"",
+						"//Take the file from the FileUploader object.",
+						"var file = pdfUpload.oFileUpload.files[0];",
+						"",
+						"var fileReader = new FileReader();",
+						"var base64;",
+						"var pdf;",
+						" ",
+						"fileReader.onload = function(fileLoadedEvent) {",
+						"    //Get the base64 representation",
+						"    base64 = fileLoadedEvent.target.result;",
+						"    //Strip the header data.",
+						"    pdf = base64.slice(28,base64.length);",
+						"",
+						"    //This is used as a placeholder to save the data for the submission.",
+						"    pdfEncoding.setText(pdf);",
+						"    ",
+						"    //convert the PDF into a URL",
+						"    var pdfurl = createDataURL(pdf);",
+						"    oPDFViewer.setSource(pdfurl)",
+						"    oPDFViewer.setVisible(true);",
+						"    ",
+						"};",
+						"",
+						"// Convert data to base64",
+						"fileReader.readAsDataURL(file);",
+						"",
+						"//To display the pdf we need to represent it as a data URL.",
+						"function createDataURL(pdf){",
+						"    //Register BLOBs on the application.",
+						"    jQuery.sap.addUrlWhitelist(\"blob\");",
+						"    //convert the base64 to binary and insert it in a byte array.",
+						"    var decodedPdfContent = atob(pdf);",
+						"    var byteArray = new Uint8Array(decodedPdfContent.length)",
+						"    for(var i=0; i<decodedPdfContent.length; i++){",
+						"        byteArray[i] = decodedPdfContent.charCodeAt(i);",
+						"    }",
+						"    //create a BLOB and a URL",
+						"    var blob = new Blob([byteArray.buffer], { type: 'application/pdf' });",
+						"    var pdfurl = URL.createObjectURL(blob);",
+						"",
+						"    return pdfurl;",
+						"}"
+					],
+					"translation": []
+				}
+			],
+			"data": []
+		},
+		{
+			"fieldNo": "914c5a26-cebe-493c-a13b-a7d9fa83c0a5",
+			"fieldName": "oPDFViewer",
+			"fieldParent": 0,
+			"fieldType": "sap.m.PDFViewer",
+			"script": "",
+			"request": [],
+			"response": [],
+			"attributes": [
+				{
+					"attribute": "height",
+					"grouping": "Properties",
+					"value": "1000px",
+					"script": "",
+					"translation": []
+				},
+				{
+					"attribute": "visible",
+					"grouping": "Properties",
+					"value": "false",
+					"script": "",
+					"translation": []
+				}
+			],
+			"data": []
+		},
+		{
+			"fieldNo": 99999,
+			"data": []
+		},
+		{
+			"fieldNo": 99998,
+			"data": []
+		}
+	],
+	"ver": "22.8.3.855",
+	"application": "pdfupload",
+	"title": "",
+	"description": "",
+	"enableFileStorage": false,
+	"enableManifest": false,
+	"enableStylesheet": false,
+	"enableObfuscate": true,
+	"onlyRunLaunchpad": false,
+	"disabled": false,
+	"loadLaunchpadCode": null,
+	"loadApplicationCode": null,
+	"appType": "C",
+	"ui5_m": true,
+	"ui5_f": false,
+	"ui5_table": false,
+	"ui5_tnt": false,
+	"ui5_uxap": false,
+	"ui5_chart": false,
+	"ui5_theme": "sap_fiori_3",
+	"ui5_version": "",
+	"ui5_language": null,
+	"cus_theme": "",
+	"css": "",
+	"header": "",
+	"manifest": "",
+	"globalScript": "",
+	"deleted": false,
+	"libHighchart": false,
+	"libHighmap": false,
+	"publicAccess": false,
+	"ui5_bootstrap": false,
+	"apis": []
+}
