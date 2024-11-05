@@ -1,5 +1,5 @@
 {
-	"id": "4A5C923C-F912-ED11-BD6E-000D3AB1D9FF",
+	"id": "4a5c923c-f912-ed11-bd6e-000d3ab1d9ff",
 	"createdAt": "2022-08-03T06:55:20.080Z",
 	"createdBy": "kristin.eliassen@neptune-software.com",
 	"git": {
@@ -11,18 +11,21 @@
 	"description": null,
 	"ver": "22.8.3.656",
 	"enableCICD": true,
+	"internalReadOnly": false,
+	"oeVersion": null,
+	"excludeTemplateFiles": false,
+	"roles": [],
 	"apps": [
 		{
-			"id": "FE93B8FE-DE8B-EB11-85AA-0003FF1E43FB",
-			"ver": "22.8.3.855",
+			"id": "fe93b8fe-de8b-eb11-85aa-0003ff1e43fb",
 			"application": "pdfupload",
 			"title": "",
 			"description": ""
 		}
 	],
 	"api": [],
-	"odataMock": [],
 	"odataSource": [],
+	"odataMock": [],
 	"dictionary": [],
 	"jsclass": [],
 	"jsscript_group": [],
@@ -33,15 +36,23 @@
 	"api_authentication": [],
 	"api_group": [],
 	"tile": [],
+	"tile_layout": [],
 	"category": [],
+	"tilegroup_layout": [],
 	"launchpad": [],
+	"launchpad_layout": [],
 	"certificates": [],
 	"role": [],
 	"systems": [],
 	"doc": [],
 	"wf_notifications": [],
-	"wf_definition": [],
 	"department": [],
 	"script_scheduler": [],
-	"connector": []
+	"wf_definition": [],
+	"connector": [],
+	"events": [],
+	"code_snippets": [],
+	"wf_determination": [],
+	"wf_taskaction": [],
+	"theme_ui5": []
 }

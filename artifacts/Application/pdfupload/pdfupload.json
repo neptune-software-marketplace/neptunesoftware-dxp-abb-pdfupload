@@ -1,9 +1,7 @@
 {
 	"id": "fe93b8fe-de8b-eb11-85aa-0003ff1e43fb",
 	"createdAt": "2022-02-04T15:52:06.726Z",
-	"updatedAt": "2022-08-03T06:55:31.716Z",
 	"createdBy": "luuk.wosten@neptune-software.com",
-	"changedBy": "kristin.eliassen@neptune-software.com",
 	"objects": [
 		{
 			"fieldNo": "855b23bc-890b-48b7-a995-0d2e4359b320",
@@ -11,6 +9,7 @@
 			"fieldParent": 0,
 			"fieldType": "sap.m.CheckBox",
 			"script": "",
+			"customComponent": false,
 			"request": [],
 			"response": [],
 			"attributes": [
@@ -18,21 +17,7 @@
 					"attribute": "select",
 					"grouping": "Events",
 					"value": "Anonymous Function",
-					"script": [
-						"==OBJECT STRING==",
-						"if (checkboxSelected.getSelected()){",
-						"    pdfUpload.setVisible(true);",
-						"    if (oPDFViewer.getSource()){",
-						"        oPDFViewer.setVisible(true);",
-						"    }",
-						"",
-						"}",
-						"else {",
-						"    oPDFViewer.setVisible(false);",
-						"    pdfUpload.setVisible(false);",
-						"}",
-						""
-					],
+					"script": "file://event/sap.m.CheckBox/checkboxSelected/select.script",
 					"translation": []
 				}
 			],
@@ -44,6 +29,7 @@
 			"fieldParent": 0,
 			"fieldType": "sap.m.Text",
 			"script": "",
+			"customComponent": false,
 			"request": [],
 			"response": [],
 			"attributes": [
@@ -63,6 +49,7 @@
 			"fieldParent": 0,
 			"fieldType": "sap.ui.unified.FileUploader",
 			"script": "",
+			"customComponent": false,
 			"request": [],
 			"response": [],
 			"attributes": [
@@ -91,54 +78,7 @@
 					"attribute": "fileAllowed",
 					"grouping": "Events",
 					"value": "Anonymous Function",
-					"script": [
-						"==OBJECT STRING==",
-						"//This code triggers when we have successfully uploaded a file.",
-						"console.log(\"File Allowed\");",
-						"",
-						"//Take the file from the FileUploader object.",
-						"var file = pdfUpload.oFileUpload.files[0];",
-						"",
-						"var fileReader = new FileReader();",
-						"var base64;",
-						"var pdf;",
-						" ",
-						"fileReader.onload = function(fileLoadedEvent) {",
-						"    //Get the base64 representation",
-						"    base64 = fileLoadedEvent.target.result;",
-						"    //Strip the header data.",
-						"    pdf = base64.slice(28,base64.length);",
-						"",
-						"    //This is used as a placeholder to save the data for the submission.",
-						"    pdfEncoding.setText(pdf);",
-						"    ",
-						"    //convert the PDF into a URL",
-						"    var pdfurl = createDataURL(pdf);",
-						"    oPDFViewer.setSource(pdfurl)",
-						"    oPDFViewer.setVisible(true);",
-						"    ",
-						"};",
-						"",
-						"// Convert data to base64",
-						"fileReader.readAsDataURL(file);",
-						"",
-						"//To display the pdf we need to represent it as a data URL.",
-						"function createDataURL(pdf){",
-						"    //Register BLOBs on the application.",
-						"    jQuery.sap.addUrlWhitelist(\"blob\");",
-						"    //convert the base64 to binary and insert it in a byte array.",
-						"    var decodedPdfContent = atob(pdf);",
-						"    var byteArray = new Uint8Array(decodedPdfContent.length)",
-						"    for(var i=0; i<decodedPdfContent.length; i++){",
-						"        byteArray[i] = decodedPdfContent.charCodeAt(i);",
-						"    }",
-						"    //create a BLOB and a URL",
-						"    var blob = new Blob([byteArray.buffer], { type: 'application/pdf' });",
-						"    var pdfurl = URL.createObjectURL(blob);",
-						"",
-						"    return pdfurl;",
-						"}"
-					],
+					"script": "file://event/sap.ui.unified.FileUploader/pdfUpload/fileAllowed.script",
 					"translation": []
 				}
 			],
@@ -150,6 +90,7 @@
 			"fieldParent": 0,
 			"fieldType": "sap.m.PDFViewer",
 			"script": "",
+			"customComponent": false,
 			"request": [],
 			"response": [],
 			"attributes": [
@@ -166,6 +107,13 @@
 					"value": "false",
 					"script": "",
 					"translation": []
+				},
+				{
+					"attribute": "isTrustedSource",
+					"grouping": "Properties",
+					"value": "true",
+					"script": "",
+					"translation": []
 				}
 			],
 			"data": []
@@ -179,7 +127,8 @@
 			"data": []
 		}
 	],
-	"ver": "22.8.3.855",
+	"componentInterface": [],
+	"ver": "24.11.05.1041",
 	"application": "pdfupload",
 	"title": "",
 	"description": "",
@@ -201,8 +150,10 @@
 	"ui5_theme": "sap_fiori_3",
 	"ui5_version": "",
 	"ui5_language": null,
+	"ui5_url": "",
 	"cus_theme": "",
 	"css": "",
+	"compiledCss": null,
 	"header": "",
 	"manifest": "",
 	"globalScript": "",
@@ -211,5 +162,13 @@
 	"libHighmap": false,
 	"publicAccess": false,
 	"ui5_bootstrap": false,
+	"ui5_ionic": false,
+	"useV2AppHandler": false,
+	"compilerTarget": 3,
+	"tabWidth": null,
+	"printWidth": null,
+	"generateVersionOnActivation": false,
+	"activationHistoryCount": 0,
+	"package": "4a5c923c-f912-ed11-bd6e-000d3ab1d9ff",
 	"apis": []
 }
